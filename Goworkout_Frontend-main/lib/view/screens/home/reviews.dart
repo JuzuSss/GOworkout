@@ -226,7 +226,16 @@ class AddReview extends StatelessWidget {
           ),
         ),
         MyButton(
-          onTap: () {},
+          onTap: () {
+            Get.back();
+            Get.snackbar(
+              'Review',
+              'Thanks! Your review was submitted.',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: kPrimary100,
+              colorText: kQuaternaryColor,
+            );
+          },
           buttonText: 'Submit Review',
           backgroundColor: kQuaternaryColor,
           fontColor: kTertiaryColor,

@@ -131,7 +131,16 @@ class SearchFilter extends StatelessWidget {
           ),
         ),
         MyButton(
-          onTap: () {},
+          onTap: () {
+            Get.back();
+            Get.snackbar(
+              'Filters',
+              'Filters applied successfully.',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: kPrimary100,
+              colorText: kQuaternaryColor,
+            );
+          },
           buttonText: 'Apply Changes',
           mhoriz: 20,
           mBottom: 30,

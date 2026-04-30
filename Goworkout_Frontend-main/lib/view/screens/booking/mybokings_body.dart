@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_workout/constants/app_colors.dart';
 import 'package:go_workout/constants/app_sizes.dart';
 import 'package:go_workout/generated/assets.dart';
+import 'package:go_workout/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:go_workout/view/widgets/animate_widget.dart';
 import 'package:go_workout/view/widgets/booking_tile.dart';
 import 'package:go_workout/view/widgets/coach_tile.dart';
@@ -101,7 +103,9 @@ class NoItems extends StatelessWidget {
             children: [
               MyButton(
                 mTop: 20,
-                onTap: () {},
+                onTap: () {
+                  Get.offAll(() => BottomNavBar(currentIndex: 1));
+                },
                 buttonText: 'Discover More',
                 height: 32,
                 fontSize: 14,

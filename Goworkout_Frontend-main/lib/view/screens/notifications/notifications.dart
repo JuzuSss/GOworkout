@@ -18,11 +18,11 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool hasnotification = false;
+    final bool hasnotification = true;
     return Scaffold(
       appBar: simpleAppBar(title: 'Notifications', centerTitle: T),
       body:
-          hasnotification == true
+          hasnotification == false
               ? Center(
                 child: NoItems(
                   title: 'No Notifications!',

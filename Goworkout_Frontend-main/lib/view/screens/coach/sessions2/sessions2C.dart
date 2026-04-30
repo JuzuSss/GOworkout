@@ -221,7 +221,15 @@ class Sessions2c extends StatelessWidget {
                 children: [
                   Location(),
                   MyButton(
-                    onTap: () {},
+                    onTap: () {
+                      Get.snackbar(
+                        'Location',
+                        'Location updated successfully.',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: kPrimary100,
+                        colorText: kQuaternaryColor,
+                      );
+                    },
                     buttonText: 'Update Location',
                     backgroundColor: ktransparent,
                     outlineColor: kQuaternaryColor,

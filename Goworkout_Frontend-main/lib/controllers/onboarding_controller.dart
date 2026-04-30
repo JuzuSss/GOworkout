@@ -31,8 +31,7 @@ class OnboardingController extends GetxController {
     if (currentIndex.value < onboarding.length - 1) {
       currentIndex.value++;
     } else {
-      // Handle final action
-      Get.to(() => GetStarted());
+      Get.offAll(() => const GetStarted());
     }
   }
 }

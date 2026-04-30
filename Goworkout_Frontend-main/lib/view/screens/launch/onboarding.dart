@@ -82,7 +82,7 @@ class Onboarding extends StatelessWidget {
                 child: MyText(
                   text: 'Skip',
                   onTap: () {
-                    Get.to(() => GetStarted());
+                    Get.offAll(() => const GetStarted());
                   },
                 ),
                 top: 40,

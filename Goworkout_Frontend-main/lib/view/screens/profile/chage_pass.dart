@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:go_workout/constants/app_colors.dart';
 import 'package:go_workout/constants/app_fonts.dart';
@@ -86,7 +87,22 @@ class ChagePass extends StatelessWidget {
                   ),
                   hint: 'Confirm Password',
                 ),
-                MyButton(onTap: () {}, buttonText: 'Update Password'),
+                MyButton(
+                  onTap: () {
+                    Get.snackbar(
+                      'Password Updated',
+                      'Your password has been changed successfully.',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: kPrimary100,
+                      colorText: kQuaternaryColor,
+                    );
+                    Future.delayed(const Duration(milliseconds: 600), () {
+                      if (Get.isOverlaysOpen) Get.back();
+                      Get.back();
+                    });
+                  },
+                  buttonText: 'Update Password',
+                ),
               ],
             ),
           ),

@@ -6,6 +6,8 @@ import 'package:go_workout/generated/assets.dart';
 import 'package:go_workout/view/screens/auth/profile_setup.dart';
 import 'package:go_workout/view/screens/auth/reset_pass.dart';
 import 'package:go_workout/view/screens/auth/coach_setup/setup_profile_coach.dart';
+import 'package:go_workout/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:go_workout/view/screens/bottom_nav_bar/bottom_nav_coach.dart';
 import 'package:go_workout/view/widgets/animated_ball_stack.dart';
 import 'package:go_workout/view/widgets/auth_header.dart';
 import 'package:go_workout/view/widgets/custom_bottom_sheet.dart';
@@ -121,7 +123,13 @@ class EmailVerified extends StatelessWidget {
           mBottom: 20,
         ),
         MyButton(
-          onTap: () {},
+          onTap: () {
+            if (iscoach == true) {
+              Get.offAll(() => BottomNavCoach());
+            } else {
+              Get.offAll(() => BottomNavBar());
+            }
+          },
           buttonText: 'Skip for now',
           backgroundColor: kPrimaryColor,
           outlineColor: kGrey5Color,

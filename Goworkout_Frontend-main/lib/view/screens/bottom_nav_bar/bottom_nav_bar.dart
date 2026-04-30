@@ -127,7 +127,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           unselectedItemColor: kGrey5Color,
           items: List.generate(items.length, (index) {
             return BottomNavigationBarItem(
-              tooltip: 'ss',
+              tooltip: items[index]['label'],
               activeIcon: CommonImageView(
                 imagePath: items[index]['image'],
                 width: 24,

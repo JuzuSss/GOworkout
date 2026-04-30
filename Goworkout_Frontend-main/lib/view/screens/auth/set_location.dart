@@ -44,7 +44,22 @@ class SetLocation extends StatelessWidget {
                   space2: 20,
                 ),
                 MyButton(
-                  onTap: () {},
+                  onTap: () {
+                    Get.snackbar(
+                      'Location',
+                      'Using your current location.',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: kPrimaryColor,
+                      colorText: kQuaternaryColor,
+                    );
+                    Future.delayed(const Duration(milliseconds: 700), () {
+                      Get.to(
+                        () => ManualLocation(),
+                        transition: Transition.downToUp,
+                        duration: const Duration(milliseconds: 600),
+                      );
+                    });
+                  },
                   buttonText: 'Use Current Loction',
                   hasicon: true,
                   choiceIcon: Assets.imagesArrow,

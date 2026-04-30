@@ -9,6 +9,7 @@ import 'package:go_workout/constants/app_styling.dart';
 import 'package:go_workout/generated/assets.dart';
 import 'package:go_workout/main.dart';
 import 'package:go_workout/view/screens/booking/reschedule.dart';
+import 'package:go_workout/view/screens/chat/chat_screen.dart';
 import 'package:go_workout/view/widgets/coach_tile.dart';
 import 'package:go_workout/view/widgets/common_image_view_widget.dart';
 import 'package:go_workout/view/widgets/my_button.dart';
@@ -115,7 +116,19 @@ class _SuccessState extends State<Success> {
                   children: [
                     Expanded(
                       child: MyButton(
-                        onTap: () {},
+                        onTap: () {
+                          Get.snackbar(
+                            'Booking',
+                            'Your booking has been cancelled.',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: kPrimary100,
+                            colorText: kQuaternaryColor,
+                          );
+                          Future.delayed(
+                            const Duration(milliseconds: 700),
+                            () => Get.back(),
+                          );
+                        },
                         buttonText: 'Cancel Booking',
                         fontSize: 14,
                         fontWeight: wsemibold,
@@ -190,7 +203,13 @@ class _SuccessState extends State<Success> {
                     ),
                   ],
                 ),
-                MyButton(onTap: () {}, buttonText: 'Chat with Coach', mTop: 20),
+                MyButton(
+                  onTap: () {
+                    Get.to(() => const ChatScreen());
+                  },
+                  buttonText: 'Chat with Coach',
+                  mTop: 20,
+                ),
               ],
             ),
           ),

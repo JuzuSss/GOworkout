@@ -17,7 +17,19 @@ class ManualLocation extends StatelessWidget {
       appBar: simpleAppBar(
         actions: [
           MyButton(
-            onTap: () {},
+            onTap: () {
+              Get.snackbar(
+                'Location',
+                'Location saved successfully.',
+                snackPosition: SnackPosition.BOTTOM,
+                backgroundColor: kPrimaryColor,
+                colorText: kQuaternaryColor,
+              );
+              Future.delayed(
+                const Duration(milliseconds: 600),
+                () => Get.back(),
+              );
+            },
             buttonText: 'Save',
             height: 32,
             mhoriz: 16,

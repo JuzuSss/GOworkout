@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_workout/constants/app_colors.dart';
 import 'package:go_workout/generated/assets.dart';
+import 'package:go_workout/view/screens/auth/login.dart';
 import 'package:go_workout/view/widgets/animated_ball_stack.dart';
 import 'package:go_workout/view/widgets/auth_header.dart';
 import 'package:go_workout/view/widgets/common_image_view_widget.dart';
@@ -63,7 +65,22 @@ class ResetPass extends StatelessWidget {
                           height: 24,
                         ),
                       ),
-                      MyButton(onTap: () {}, buttonText: 'Update Password'),
+                      MyButton(
+                        onTap: () {
+                          Get.snackbar(
+                            'Password Reset',
+                            'Your password was reset successfully.',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: kPrimary100,
+                            colorText: kQuaternaryColor,
+                          );
+                          Future.delayed(
+                            const Duration(milliseconds: 700),
+                            () => Get.offAll(() => const Login()),
+                          );
+                        },
+                        buttonText: 'Update Password',
+                      ),
                     ],
                   ),
                 ),

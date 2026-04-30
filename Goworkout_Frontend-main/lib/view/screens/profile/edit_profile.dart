@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_workout/constants/app_colors.dart';
 import 'package:go_workout/constants/app_sizes.dart';
 import 'package:go_workout/generated/assets.dart';
@@ -50,7 +51,23 @@ class EditProfile extends StatelessWidget {
                     height: 20,
                   ),
                 ),
-                MyButton(onTap: () {}, buttonText: 'Save Changes', mTop: 20),
+                MyButton(
+                  onTap: () {
+                    Get.snackbar(
+                      'Profile',
+                      'Your profile changes have been saved.',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: kPrimary100,
+                      colorText: kQuaternaryColor,
+                    );
+                    Future.delayed(
+                      const Duration(milliseconds: 600),
+                      () => Get.back(),
+                    );
+                  },
+                  buttonText: 'Save Changes',
+                  mTop: 20,
+                ),
               ],
             ),
           ),
