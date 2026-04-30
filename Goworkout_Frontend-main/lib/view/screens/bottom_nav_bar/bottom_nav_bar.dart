@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_workout/constants/app_colors.dart';
@@ -87,7 +87,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
       body: screens[widget.currentIndex!],
       bottomNavigationBar: Container(
         padding: EdgeInsets.all(0),
-        height: Platform.isIOS ? null : 62,
+        height: (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS)
+            ? null
+            : 62,
         decoration: BoxDecoration(
           color: kPrimaryColor,
           boxShadow: [
