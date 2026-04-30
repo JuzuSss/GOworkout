@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:go_workout/constants/app_colors.dart';
+import 'package:go_workout/constants/app_sizes.dart';
 import 'package:go_workout/constants/app_styling.dart';
 import 'package:go_workout/generated/assets.dart';
 import 'package:go_workout/view/widgets/Icon_title_subtitle.dart';

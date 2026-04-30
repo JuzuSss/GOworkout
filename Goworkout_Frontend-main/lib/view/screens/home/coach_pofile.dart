@@ -28,9 +28,9 @@ class CoachPofile extends StatelessWidget {
   void _showCoachMenu() {
     Get.bottomSheet(
       Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: kPrimary100,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         ),
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Column(

@@ -16,6 +16,7 @@ import 'package:go_workout/view/widgets/common_image_view_widget.dart';
 import 'package:go_workout/view/widgets/custom_animated_row.dart';
 import 'package:go_workout/view/widgets/my_button.dart';
 import 'package:go_workout/view/widgets/my_ratings.dart';
+import 'package:go_workout/view/widgets/my_text_widget.dart';
 import 'package:go_workout/view/widgets/tabs_widget.dart';
 import 'package:go_workout/view/widgets/two_text_column.dart';
 
@@ -25,9 +26,9 @@ class Sessions2c extends StatelessWidget {
   void _showSelfMenu() {
     Get.bottomSheet(
       Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: kPrimary100,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         ),
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Column(

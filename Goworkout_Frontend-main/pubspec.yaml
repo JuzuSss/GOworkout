@@ -22,8 +22,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_animate: null
+  flutter_map: ^7.0.2
   flutter_slidable: ^4.0.0
   flutter_svg: null
+  latlong2: ^0.9.1
   get: null
   gradient_borders: ^1.0.1
   input_quantity: ^2.3.4

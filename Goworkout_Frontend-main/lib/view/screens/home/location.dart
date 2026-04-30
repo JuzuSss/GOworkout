@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:go_workout/constants/app_colors.dart';
 import 'package:go_workout/constants/app_sizes.dart';
 import 'package:go_workout/generated/assets.dart';
@@ -60,7 +62,44 @@ class Location extends StatelessWidget {
         ),
         Padding(
           padding: AppSizes.DEFAULT,
-          child: CommonImageView(imagePath: Assets.imagesMap, height: 200),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: SizedBox(
+              height: 220,
+              child: FlutterMap(
+                options: const MapOptions(
+                  initialCenter: LatLng(40.7228, -73.9963),
+                  initialZoom: 13,
+                  interactionOptions: InteractionOptions(
+                    flags: InteractiveFlag.pinchZoom |
+                        InteractiveFlag.drag |
+                        InteractiveFlag.doubleTapZoom,
+                  ),
+                ),
+                children: [
+                  TileLayer(
+                    urlTemplate:
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    userAgentPackageName: 'com.goworkout.app',
+                  ),
+                  const MarkerLayer(
+                    markers: [
+                      Marker(
+                        point: LatLng(40.7228, -73.9963),
+                        width: 40,
+                        height: 40,
+                        child: Icon(
+                          Icons.location_pin,
+                          color: kSecondaryColor,
+                          size: 40,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ],
     );
