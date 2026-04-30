@@ -222,8 +222,16 @@ class _MyCalenderState extends State<MyCalender> {
               headerStyle: const HeaderStyle(
                 titleCentered: false,
                 formatButtonVisible: false,
-                leftChevronVisible: false,
-                rightChevronVisible: false,
+                leftChevronVisible: true,
+                rightChevronVisible: true,
+                leftChevronIcon: Icon(
+                  Icons.chevron_left,
+                  color: kQuaternaryColor,
+                ),
+                rightChevronIcon: Icon(
+                  Icons.chevron_right,
+                  color: kQuaternaryColor,
+                ),
               ),
 
               eventLoader: _getEventsForDay,

@@ -22,6 +22,41 @@ import 'package:go_workout/view/widgets/two_text_column.dart';
 class Sessions2c extends StatelessWidget {
   const Sessions2c({super.key});
 
+  void _showSelfMenu() {
+    Get.bottomSheet(
+      Container(
+        decoration: const BoxDecoration(
+          color: kPrimary100,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.edit, color: kQuaternaryColor),
+              title: MyText(text: 'Edit Profile'),
+              onTap: () => Get.back(),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.privacy_tip_outlined,
+                color: kQuaternaryColor,
+              ),
+              title: MyText(text: 'Privacy'),
+              onTap: () => Get.back(),
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout, color: kRedColor),
+              title: MyText(text: 'Logout', color: kRedColor),
+              onTap: () => Get.back(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -37,7 +72,14 @@ class Sessions2c extends StatelessWidget {
                 iconTheme: IconThemeData(color: ktransparent),
 
                 actions: [
-                  CommonImageView(imagePath: Assets.imagesMenu2, height: 24),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => _showSelfMenu(),
+                    child: CommonImageView(
+                      imagePath: Assets.imagesMenu2,
+                      height: 24,
+                    ),
+                  ),
                   SizedBox(width: 20),
                 ],
                 shadowColor: kPrimaryColor,

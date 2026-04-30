@@ -45,11 +45,15 @@ AppBar simpleAppBar({
             child: Column(
               children: [
                 GestureDetector(
+                  behavior: HitTestBehavior.opaque,
                   onTap: onBackIconTap ?? () => Get.back(),
-                  child: Image.asset(
-                    Assets.imagesBack,
-                    height: height ?? 24,
-                    color: contentColor ?? null,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      Assets.imagesBack,
+                      height: height ?? 24,
+                      color: contentColor ?? null,
+                    ),
                   ),
                 ),
               ],
@@ -125,8 +129,12 @@ ClipRRect simpleAppBar2({
           SizedBox(width: 10),
           if (haveBackButton!)
             GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: onBackIconTap ?? () => Get.back(),
-              child: Image.asset(Assets.imagesBack, height: height ?? 40),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(Assets.imagesBack, height: height ?? 40),
+              ),
             ),
         ],
       ),

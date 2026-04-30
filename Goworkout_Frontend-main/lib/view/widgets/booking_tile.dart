@@ -61,7 +61,10 @@ class BookingTile extends StatelessWidget {
                 )
                 : Bounce(
                   scale: status == 'cancelled' ? false : true,
-                  onTap: () {},
+                  onTap: () {
+                    if (status == 'cancelled') return;
+                    Get.to(() => ConfirmedDetails(iscoach: iscoach));
+                  },
                   child: Opacity(
                     opacity: status == 'cancelled' ? 0.2 : 1,
                     child: CommonImageView(

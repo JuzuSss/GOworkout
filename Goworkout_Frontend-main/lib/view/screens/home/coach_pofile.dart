@@ -7,6 +7,7 @@ import 'package:go_workout/constants/app_sizes.dart';
 import 'package:go_workout/constants/app_styling.dart';
 import 'package:go_workout/generated/assets.dart';
 import 'package:go_workout/main.dart';
+import 'package:go_workout/view/screens/chat/chat_screen.dart';
 import 'package:go_workout/view/screens/home/location.dart';
 import 'package:go_workout/view/screens/home/overview.dart';
 import 'package:go_workout/view/screens/home/reviews.dart';
@@ -24,6 +25,65 @@ import 'package:go_workout/view/widgets/two_text_column.dart';
 class CoachPofile extends StatelessWidget {
   const CoachPofile({super.key});
 
+  void _showCoachMenu() {
+    Get.bottomSheet(
+      Container(
+        decoration: const BoxDecoration(
+          color: kPrimary100,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.share, color: kQuaternaryColor),
+              title: MyText(text: 'Share Profile'),
+              onTap: () {
+                Get.back();
+                Get.snackbar(
+                  'Share',
+                  'Profile link copied.',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: kPrimary100,
+                  colorText: kQuaternaryColor,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.flag_outlined, color: kQuaternaryColor),
+              title: MyText(text: 'Report Coach'),
+              onTap: () {
+                Get.back();
+                Get.snackbar(
+                  'Report',
+                  'Thanks. We will review this coach.',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: kPrimary100,
+                  colorText: kQuaternaryColor,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.block, color: kRedColor),
+              title: MyText(text: 'Block', color: kRedColor),
+              onTap: () {
+                Get.back();
+                Get.snackbar(
+                  'Blocked',
+                  'You will no longer see this coach.',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: kPrimary100,
+                  colorText: kQuaternaryColor,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -39,13 +99,37 @@ class CoachPofile extends StatelessWidget {
                 iconTheme: IconThemeData(color: ktransparent),
 
                 actions: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                    decoration: roundedr(kQuaternaryColor, 100),
-                    child: MyText(text: 'Follow', color: kTertiaryColor),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      Get.snackbar(
+                        'Coach',
+                        'You are now following this coach.',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: kPrimary100,
+                        colorText: kQuaternaryColor,
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 2,
+                      ),
+                      decoration: roundedr(kQuaternaryColor, 100),
+                      child: MyText(text: 'Follow', color: kTertiaryColor),
+                    ),
                   ),
                   SizedBox(width: 10),
-                  CommonImageView(imagePath: Assets.imagesMenu2, height: 24),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      _showCoachMenu();
+                    },
+                    child: CommonImageView(
+                      imagePath: Assets.imagesMenu2,
+                      height: 24,
+                    ),
+                  ),
                   SizedBox(width: 20),
                 ],
                 shadowColor: kPrimaryColor,
@@ -58,12 +142,13 @@ class CoachPofile extends StatelessWidget {
                   children: [
                     SizedBox(width: 16),
                     GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Image.asset(Assets.imagesBack, height: 24),
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () => Get.back(),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(Assets.imagesBack, height: 24),
+                      ),
                     ),
-                    // searchwidget ?? Container(),
                   ],
                 ),
 
@@ -238,7 +323,16 @@ class CoachPofile extends StatelessWidget {
                   fontColor: kTertiaryColor,
                 ),
               ),
-              CommonImageView(imagePath: Assets.imagesChat, height: 45),
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
+                  Get.to(() => const ChatScreen());
+                },
+                child: CommonImageView(
+                  imagePath: Assets.imagesChat,
+                  height: 45,
+                ),
+              ),
             ],
           ),
         ),

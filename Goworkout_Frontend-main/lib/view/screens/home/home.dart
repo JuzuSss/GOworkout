@@ -9,6 +9,7 @@ import 'package:go_workout/constants/app_sizes.dart';
 import 'package:go_workout/generated/assets.dart';
 import 'package:go_workout/view/screens/home/search_filter.dart';
 import 'package:go_workout/view/screens/notifications/notifications.dart';
+import 'package:go_workout/view/screens/profile/help.dart';
 import 'package:go_workout/view/widgets/animate_widget.dart';
 import 'package:go_workout/view/widgets/animated_column.dart';
 import 'package:go_workout/view/widgets/coach_tile.dart';
@@ -89,8 +90,74 @@ class CustomSliverAppBar extends StatelessWidget {
       leading: Row(
         children: [
           SizedBox(width: 16),
-          GestureDetector(child: Image.asset(Assets.imagesMenu, height: 24)),
-          // searchwidget ?? Container(),
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              showModalBottomSheet(
+                context: Get.context!,
+                backgroundColor: kPrimary100,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+                builder: (_) => Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 24,
+                    horizontal: 20,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      MyText(
+                        text: 'Menu',
+                        size: 20,
+                        weight: wbold,
+                        paddingBottom: 16,
+                      ),
+                      ListTile(
+                        leading: const Icon(
+                          Icons.notifications_outlined,
+                          color: kQuaternaryColor,
+                        ),
+                        title: MyText(text: 'Notifications'),
+                        onTap: () {
+                          Get.back();
+                          Get.to(() => const Notifications());
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(
+                          Icons.tune,
+                          color: kQuaternaryColor,
+                        ),
+                        title: MyText(text: 'Filters'),
+                        onTap: () {
+                          Get.back();
+                          Get.bottomSheet(
+                            SearchFilter(),
+                            barrierColor: kPrimary100.withOpacity(0.6),
+                            isScrollControlled: true,
+                          );
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(
+                          Icons.help_outline,
+                          color: kQuaternaryColor,
+                        ),
+                        title: MyText(text: 'Help'),
+                        onTap: () {
+                          Get.back();
+                          Get.to(() => const Help());
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+            child: Image.asset(Assets.imagesMenu, height: 24),
+          ),
         ],
       ),
 

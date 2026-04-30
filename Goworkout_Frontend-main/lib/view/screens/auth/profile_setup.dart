@@ -77,7 +77,14 @@ class ProfileSetup extends StatelessWidget {
                       CustomDropDown(
                         hint: "Select Player Level",
                         heading: '',
-                        items: ['Departmental', 'Regional', 'National'],
+                        items: const [
+                          'Particular',
+                          'Club',
+                          'Departmental',
+                          'Regional',
+                          'National',
+                          'International',
+                        ],
                         onChanged: (v) {},
                       ),
                       MyButton(
@@ -100,33 +107,115 @@ class ProfileSetup extends StatelessWidget {
   }
 }
 
-class PhotoStack extends StatelessWidget {
+class PhotoStack extends StatefulWidget {
   final bool? isattach;
   const PhotoStack({super.key, this.isattach});
 
   @override
+  State<PhotoStack> createState() => _PhotoStackState();
+}
+
+class _PhotoStackState extends State<PhotoStack> {
+  late bool _hasPhoto;
+
+  @override
+  void initState() {
+    super.initState();
+    _hasPhoto = widget.isattach == true;
+  }
+
+  void _pickPhoto() {
+    Get.bottomSheet(
+      Container(
+        decoration: const BoxDecoration(
+          color: kPrimary100,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(
+                Icons.photo_camera_outlined,
+                color: kQuaternaryColor,
+              ),
+              title: MyText(text: 'Take Photo'),
+              onTap: () {
+                Get.back();
+                setState(() => _hasPhoto = true);
+                Get.snackbar(
+                  'Photo',
+                  'Photo captured.',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: kPrimary100,
+                  colorText: kQuaternaryColor,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.photo_library_outlined,
+                color: kQuaternaryColor,
+              ),
+              title: MyText(text: 'Choose from Gallery'),
+              onTap: () {
+                Get.back();
+                setState(() => _hasPhoto = true);
+                Get.snackbar(
+                  'Photo',
+                  'Photo selected.',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: kPrimary100,
+                  colorText: kQuaternaryColor,
+                );
+              },
+            ),
+            if (_hasPhoto)
+              ListTile(
+                leading: const Icon(Icons.delete_outline, color: kRedColor),
+                title: MyText(text: 'Remove Photo', color: kRedColor),
+                onTap: () {
+                  Get.back();
+                  setState(() => _hasPhoto = false);
+                },
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
-      child: Stack(
-        children: [
-          isattach == true
-              ? CommonImageView(
-                url: images[7],
-                height: 135,
-                width: 135,
-                radius: 300,
-              )
-              : Container(
-                decoration: circle(kGrey3Color, kGrey3Color),
-                height: 135,
-                width: 135,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: _pickPhoto,
+        child: Stack(
+          children: [
+            _hasPhoto
+                ? CommonImageView(
+                    url: images[7],
+                    height: 135,
+                    width: 135,
+                    radius: 300,
+                  )
+                : Container(
+                    decoration: circle(kGrey3Color, kGrey3Color),
+                    height: 135,
+                    width: 135,
+                  ),
+            Positioned(
+              child: CommonImageView(
+                imagePath: Assets.imagesCamera,
+                height: 56,
               ),
-          Positioned(
-            child: CommonImageView(imagePath: Assets.imagesCamera, height: 56),
-            bottom: 0,
-            right: 0,
-          ),
-        ],
+              bottom: 0,
+              right: 0,
+            ),
+          ],
+        ),
       ),
     );
   }

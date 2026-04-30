@@ -5,6 +5,7 @@ import 'package:go_workout/constants/app_colors.dart';
 import 'package:go_workout/constants/app_sizes.dart';
 import 'package:go_workout/constants/app_styling.dart';
 import 'package:go_workout/view/screens/booking/reschedule.dart';
+import 'package:go_workout/view/screens/chat/chat_screen.dart';
 import 'package:go_workout/view/screens/home/success.dart';
 import 'package:go_workout/view/widgets/coach_tile.dart';
 import 'package:go_workout/view/widgets/common_image_view_widget.dart';
@@ -115,7 +116,6 @@ class ConfirmedDetails extends StatelessWidget {
                     },
                     btn1OnTap: () {
                       Get.dialog(
-                        //    barrierColor: kGrey5Color.withOpacity(0.2),
                         CustomDialog(
                           height: 0,
                           title: 'Are you sure?',
@@ -123,8 +123,21 @@ class ConfirmedDetails extends StatelessWidget {
                           outline1color: kQuaternaryColor,
                           btntext: 'No',
                           btntext2: 'Yes',
-
                           subtitle: 'You want to cancel this booking?',
+                          ontap: () => Get.back(),
+                          ontap2: () {
+                            Get.back();
+                            Get.back();
+                            Get.snackbar(
+                              'Booking',
+                              status == 'reschedule'
+                                  ? 'Reschedule request rejected.'
+                                  : 'Booking cancelled.',
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: kPrimary100,
+                              colorText: kQuaternaryColor,
+                            );
+                          },
                         ),
                       );
                     },
@@ -139,13 +152,13 @@ class ConfirmedDetails extends StatelessWidget {
                       Get.to(
                         () => Success(ispending: false, title: 'Accepted'),
                       );
+                    } else {
+                      Get.to(() => const ChatScreen());
                     }
                   },
                   buttonText:
                       iscoach == true && status == 'reschedule'
                           ? 'Accept & Book'
-                          : iscoach == true
-                          ? 'Chat with Coach'
                           : 'Chat with Coach',
                   mhoriz: 20,
                   mBottom: 30,

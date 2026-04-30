@@ -39,7 +39,14 @@ class EditProfile extends StatelessWidget {
                 CustomDropDown(
                   heading: 'Player Level',
                   hint: 'Select',
-                  items: ['National'],
+                  items: const [
+                    'Particular',
+                    'Club',
+                    'Departmental',
+                    'Regional',
+                    'National',
+                    'International',
+                  ],
                   onChanged: (v) {},
                 ),
                 MyTextField(label: 'Email', labelColor: kGrey5Color),
