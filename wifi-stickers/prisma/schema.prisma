@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Business {
+  id           String   @id @default(uuid())
+  name         String
+  address      String?
+  contactName  String?
+  contactPhone String?
+  wifiSsid     String
+  wifiPassword String
+  wifiType     String   @default("WPA")
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  qrCodes QrCode[]
+}
+
+model QrCode {
+  id         String   @id @default(uuid())
+  token      String   @unique @default(uuid())
+  businessId String
+  label      String?
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  adViews  AdView[]
+}
+
+model AdView {
+  id        String   @id @default(uuid())
+  qrCodeId  String
+  consented Boolean
+  skipped   Boolean  @default(false)
+  ipHash    String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  qrCode QrCode @relation(fields: [qrCodeId], references: [id], onDelete: Cascade)
+}

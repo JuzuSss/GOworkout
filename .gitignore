@@ -1,1 +1,4 @@
-wifi-stickers/
+wifi-stickers/node_modules/
+wifi-stickers/.next/
+wifi-stickers/dev.db
+wifi-stickers/*.db
