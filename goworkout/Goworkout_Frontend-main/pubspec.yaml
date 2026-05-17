@@ -1,0 +1,66 @@
+name: go_workout
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  animated_text_kit: ^4.2.3
+  animations: null
+  bottom_picker: ^3.1.0
+  bounce: null
+  cached_network_image: null
+  country_code_picker: null
+  country_picker: ^2.0.27
+  cupertino_icons: null
+  dropdown_button2: null
+  entry: null
+  flutter:
+    sdk: flutter
+  flutter_animate: null
+  flutter_slidable: ^4.0.0
+  flutter_svg: null
+  get: null
+  gradient_borders: ^1.0.1
+  input_quantity: ^2.3.4
+  intl: ^0.20.0
+  percent_indicator: ^4.2.4
+  pinput: ^5.0.0
+  smooth_page_indicator: ^1.2.1
+  super_tooltip: ^2.0.9
+  syncfusion_flutter_calendar: ^29.1.40
+  syncfusion_flutter_charts: ^29.1.41
+  syncfusion_flutter_sliders: ^29.1.40
+  table_calendar: ^3.2.0
+  vertical_tabs_flutter: ^1.0.0
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+  fonts:
+    - family: SFPRO
+      fonts:
+
+        - asset: assets/fonts/SFPRODISPLAYREGULAR.otf
+          weight: 400
+        - asset: assets/fonts/SFPRODISPLAYMEDIUM.otf
+          weight: 500
+        - asset: assets/fonts/SFPRODISPLAYBOLD.otf
+          weight: 700
+
+flutter_assets:
+  assets_path: assets/
+  output_path: lib/generated/
+  filename: assets.dart
+  field_prefix: null
